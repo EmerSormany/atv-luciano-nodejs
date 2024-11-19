@@ -1,15 +1,15 @@
+const express = require("express")
 
-const http = require('http');
-const port = 3000 
-const ip = 'localhost'
+const app = express()
 
-const server = http.createServer(
-    (_, res) => {
-        res.end({
-            "nome": "Emerson Sormany",
-            "idade": "30",
-            "profissao": "Desenvolvedor"
-        })}
-)
+app.use(express.json())
 
-server.listen(port || 3000, ip, ()=> { console.log(`Servidor rodando em http://${ip}:${port}`)})
+app.get('/', (_, res) => {
+    return res.status(200).json({
+        nome: "Emerson Sormany",
+        idade: "30",
+        profissao: "Desenvolvedor"
+    })
+})
+
+app.listen(3000)
